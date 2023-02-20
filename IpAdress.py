@@ -33,9 +33,21 @@ def check_ip(ip_address:str) -> str:
     is_private = check_if_private(ip_address)
     ip_class = check_class(ip_address)
     
+
+    if ip_class == "A":
+        ip_mask = "255.0.0.0"
+
+    elif ip_class == "B":
+        ip_mask = "255.255.0.0"
+
+    elif ip_class == "C":
+        ip_mask = "255.255.255.0"
+    else:
+        ip_mask = "No aplica"
+    
     if is_private == True:
         str_is_private = "privada"
     else:
         str_is_private = "publica"
 
-    return "La IP %s es %s y es de clase %s" %(ip_address, str_is_private, ip_class)
+    return "La IP %s es %s y es de clase %s \nLa máscara de red es: %s " %(ip_address, str_is_private, ip_class, ip_mask) 
